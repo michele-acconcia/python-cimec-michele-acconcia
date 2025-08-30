@@ -6,5 +6,5 @@ The `python_code` directory contains the python code to perform the analysis, wh
 
 ## Energy landscape
 
-Using a dynamical system framework, the brain can be represented as a system in a state space defined by its activity. The state space can be represented as an energy landscape, where points visited more probably by the system are defined as low-energy (sometimes also refered to as attractors), while points visited more probably are defined as high-energy. For a more in depth introduction of dynamical system theory in neuroimaging see [Yohan et al.,2022](https://direct.mit.edu/netn/article/6/4/960/109066/It-s-about-time-Linking-dynamical-systems-with).
+Using a dynamical system framework, the brain can be represented as a system in a state space defined by its activity. The state space can be represented as an energy landscape, where points visited more probably by the system are defined as low-energy (sometimes also refered to as attractors), while points visited more probably are defined as high-energy. For a more in depth introduction to dynamical system theory in neuroimaging see [Yohan et al.,2022](https://direct.mit.edu/netn/article/6/4/960/109066/It-s-about-time-Linking-dynamical-systems-with).
 
