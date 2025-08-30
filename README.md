@@ -1,4 +1,5 @@
-# python-cimec-michele-acconcia
+python-cimec-michele-acconcia
+======
 This repository contains python code to perform egocentric energy landscape analysis, described in [Munn et al., 2021](https://www.nature.com/articles/s41467-021-26268-x) and [Taylor et al., 2024](https://www.sciencedirect.com/science/article/pii/S2211124724006879?via%3Dihub). The original code is in MATLAB, and the present code is adpted from [Taylor et al., 2024](https://www.sciencedirect.com/science/article/pii/S2211124724006879?via%3Dihub). The original scripts are provided for reference in the "original_matlab_code" directory.
 
 The "python_code" directory contains the python code to perform the analysis, which assumes fMRI ROI data stored in .mat files for two groups (experimental and sham). The "nrg_sham_vs_exp.py" script computes the energy landscapes for the two groups and compares them. To calculate the energy landscape the "nrg_calc.py" is used, and to properly run the code this file should be added to your python path. To test the code sample data is provided (note however, that it was randomly generated so the results will make no sense)
