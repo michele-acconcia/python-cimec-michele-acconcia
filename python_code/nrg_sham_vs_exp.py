@@ -14,12 +14,12 @@ from mpl_toolkits.mplot3d import axes3d
 from nrg_calc import nrg_calc
 
 #%% Import and convert data
-data_path = Path(r"path\to\sample_data")
-exp_path_list = list(data_path.glob('*exp*.mat'))
-sham_path_list = list(data_path.glob('*sham*.mat'))
+data_path = Path('/home/macconcia/Analysis/Energy_landscape/Datasets/PV/Awake/60_minutes/')
+exp_path_list = list(data_path.glob('*SHAM*.mat'))
+sham_path_list = list(data_path.glob('*EXP*.mat'))
 
 #Data is stored in '.mat' files from the lab's preprocessing pipeline
-#It needs to be converted in numpy and then concatenated
+#It needs to be converted in numpy and then concatenated to get a list for each group
 
 #Convert data 
 exp_list = []
@@ -33,7 +33,7 @@ for subj in sham_path_list:
     data_dict = loadmat(subj)
     data = data_dict[list(data_dict.keys())[-1]]
     sham_list.append(data)
-    
+
 #%% Analysis
 
 #Set params
@@ -46,7 +46,7 @@ nMSD = 10 #maximum MSD to consider for energy calculation
 nTR = 5 #maximum TR in the future (from every reference point) for which calculate MSD
 #Considering the maximum distance from a reference point (5) and the distance
 #between each reference point (20), a lot of data ends up being unused
-#I don't if that' by design
+#I don't if that's by design
 
 #Calculate energy landscape over group
 exp_nrg = [nrg_calc(subj,events,nMSD,nTR) for subj in exp_list]
@@ -73,19 +73,27 @@ exp_ax = axes[0]
 
 exp_ax.plot_wireframe(X, Y, exp_nrg_mean, rstride=1, cstride=1, 
                       color=np.array([105, 173, 132]) / 255.0, linewidth=0.6)
-exp_ax.set_xlabel("TR")
-exp_ax.set_ylabel("MSD")
+exp_ax.set_xlabel("MSD")
+exp_ax.set_ylabel("TR")
 exp_ax.set_zlabel("Energy")
 exp_ax.view_init(elev=30, azim=-120)
 exp_ax.set_title("Average exp landscape")
+
+# exp_ax.plot_surface(X, Y, exp_nrg_mean)
+# exp_ax.set_xlabel("TR")
+# exp_ax.set_ylabel("MSD")
+# exp_ax.set_zlabel("Energy")
+# exp_ax.view_init(elev=30, azim=-120)
+# exp_ax.set_title("Average exp landscape")
+# exp_ax.set_facecolor("white") 
 
 #Plot sham group mean
 sham_ax = axes[1]
 
 sham_ax.plot_wireframe(X, Y, sham_nrg_mean, rstride=1, cstride=1, 
                       color=np.array([105, 173, 132]) / 255.0, linewidth=0.6)
-sham_ax.set_xlabel("TR")
-sham_ax.set_ylabel("MSD")
+sham_ax.set_xlabel("MSD")
+sham_ax.set_ylabel("TR")
 sham_ax.set_zlabel("Energy")
 sham_ax.view_init(elev=30, azim=-120)
 sham_ax.set_title("Average sham landscape")
@@ -99,8 +107,8 @@ fig, ax = plt.subplots(figsize=(12, 5), subplot_kw={"projection": "3d"})
 
 ax.plot_wireframe(X, Y, nrg_mean_diff, rstride=1, cstride=1, 
                       color=np.array([105, 173, 132]) / 255.0, linewidth=0.6)
-ax.set_xlabel("TR")
-ax.set_ylabel("MSD")
+ax.set_xlabel("MSD")
+ax.set_ylabel("TR")
 ax.set_zlabel("Energy")
 ax.view_init(elev=30, azim=-120)
 ax.set_title("experimental - sham landscape")
