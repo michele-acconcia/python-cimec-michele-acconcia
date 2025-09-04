@@ -15,8 +15,8 @@ from nrg_calc import nrg_calc
 
 #%% Import and convert data
 data_path = Path('/home/macconcia/Analysis/Energy_landscape/Datasets/PV/Awake/60_minutes/')
-exp_path_list = list(data_path.glob('*SHAM*.mat'))
-sham_path_list = list(data_path.glob('*EXP*.mat'))
+exp_path_list = list(data_path.glob('*EXP*.mat'))
+sham_path_list = list(data_path.glob('*SHAM*.mat'))
 
 #Data is stored in '.mat' files from the lab's preprocessing pipeline
 #It needs to be converted in numpy and then concatenated to get a list for each group
